@@ -88,42 +88,41 @@ list_correct.txt → Fixed order
 
 final_fixed.mp4 → Final reconstructed video
 
-🧠 3. Algorithm Explanation
-Technique Used:
+🧠 Algorithm Explanation
+🔹 Technique Used
 
 Similarity-Based Frame Sequencing
 
 Each frame is compared with others using pixel difference and structural similarity (SSIM).
 
-The frame with the most similar next frame is linked, reconstructing the original sequence.
+The frame with the highest similarity to the current one is chosen as the next frame.
 
-Approach:
+🔹 Approach
 
 Convert each frame to grayscale.
 
-Measure visual similarity between consecutive frames using Mean Squared Error (MSE) or SSIM.
+Measure similarity between frames using MSE or SSIM.
 
-Start from the first frame and iteratively pick the most similar next frame.
+Starting from a random frame, iteratively find the most similar next frame.
 
-Save the detected order in a list.txt file.
+Write the discovered order into list.txt.
 
-Optionally use a small heuristic to reverse mid-portion if half the video plays backward.
+If the video seems reversed, apply a mid-reverse heuristic.
 
-Why This Method:
+🔹 Why This Method
 
-Simple, effective for gradual motion videos (no need for heavy AI models).
+✅ Simple and effective for smooth-motion videos
 
-Avoids high computational cost of CNNs or optical flow.
+⚡ Avoids heavy AI/ML models (e.g., CNNs)
 
-Easy to implement in C for speed.
+💻 Fast and efficient in C
 
-Design Considerations:
+| Factor          | Details                                              |
+| --------------- | ---------------------------------------------------- |
+| **Accuracy**    | Pixel-level comparison ensures fine-grained matching |
+| **Complexity**  | O(n²) — acceptable for ≤ 500 frames                  |
+| **Performance** | Can be parallelized for multi-core CPUs              |
 
-Accuracy: Uses pixel-level similarity for precise frame matching.
-
-Time Complexity: O(n²) comparisons, acceptable for up to ~500 frames.
-
-Parallelism: Can be optimized using multi-threading for faster processing.
 
 ⏱️ 4. Execution Time Log
 | Step                        | Description                                  | Time Taken      |
