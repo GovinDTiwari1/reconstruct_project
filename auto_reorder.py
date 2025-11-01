@@ -1,4 +1,4 @@
-# auto_reorder.py
+
 import os, shutil, subprocess, sys
 import numpy as np
 from PIL import Image
@@ -99,12 +99,12 @@ def main():
     order = greedy_nn(S)
     print("Optimizing (2-opt)...")
     order_opt = two_opt(order,S,iter_limit=300)
-    # choose better
+
     def score(o):
         return sum(S[o[i], o[i+1]] for i in range(len(o)-1))
     if score(order_opt) >= score(order):
         order = order_opt
-    # auto-direction decide
+
     fscore = score(order)
     rscore = score(order[::-1])
     if rscore > fscore:

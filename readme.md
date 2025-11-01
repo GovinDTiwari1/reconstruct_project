@@ -58,22 +58,18 @@ Run:
 
 👉 This will analyze the 300 frames and generate list.txt containing the reordered frame list.
 
-Step 4 – Fix Frame Order (if reversed)
+Step 4 – Fix Frame Order(auto_reorder.py)
 
-If the video looks reversed, run this Python script (fix_order.py):
+RUN auto_reorder.py
 
-with open("list.txt") as f:
-    lines = f.readlines()
-mid = len(lines)//2
-new_order = lines[mid:] + list(reversed(lines[:mid]))
-with open("list_correct.txt","w") as f:
-    f.writelines(new_order)
-print("Fixed order saved to list_correct.txt")
+If the video looks reversed, run this Python script (reverse_list.py):
+
+RUN reverse_list.py
 
 
 Run:
 
-python fix_order.py
+python reverse_list.py
 
 Step 5 – Rebuild the Video
 
@@ -130,8 +126,9 @@ Time Complexity: O(n²) comparisons, acceptable for up to ~500 frames.
 Parallelism: Can be optimized using multi-threading for faster processing.
 
 ⏱️ 4. Execution Time Log
-Step	Description	Time Taken
-Frame Extraction	Using FFmpeg (jumbled_video.mp4 → frames/)	~2 seconds
-Frame Analysis & Reordering	C code (reconstruct.c)	~6 seconds
-Final Video Reconstruction	FFmpeg combine	~2 seconds
-Total		~10 seconds
+| Step                        | Description                                  | Time Taken      |
+| --------------------------- | -------------------------------------------- | --------------- |
+| Frame Extraction            | Using FFmpeg (`jumbled_video.mp4 → frames/`) | ~2 seconds      |
+| Frame Analysis & Reordering | C code (`reconstruct.c`)                     | ~6 seconds      |
+| Final Video Reconstruction  | FFmpeg combine                               | ~2 seconds      |
+| **Total**                   |                                              | **~10 seconds** |
